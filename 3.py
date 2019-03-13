@@ -12,7 +12,8 @@ def handle_help(message):
 	И все будет круто!\n Пожалуйста, старайся не ошибаться, так как на данном этапе у меня нет возможности редактирования. 
 	Тем более не стоит спамить. И никогда, НИКОГДА бл не шли мне смайлики!\n
 	Чтобы получить файл с собранными данными - пришли мне команду /file\n"""
-	bot.send_message(message.from_user.id, help_message)
+	help_mes = message.from_user.id
+	bot.send_message(message.from_user.id, help_mes)
 
 
 # Обработчик команды '/start'.
