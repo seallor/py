@@ -1,1 +1,1 @@
-app: python 3.py
+app: python VagonBot.py
