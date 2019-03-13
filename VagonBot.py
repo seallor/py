@@ -30,7 +30,7 @@ def spl_line(message):
 #Обработчик комнды '/restart'.
 @bot.message_handler(commands=['restart'])
 def handle_restart(message):
-	if (message.from_user.id == '360941887'):
+	if message.from_user.id == '360941887':
 		f1 = open('sbl_file.doc', 'r')
 		bot.send_document(message.from_user.id, f1)
 		f1.close()
@@ -48,7 +48,7 @@ def handle_restart(message):
 		f1.close()
 		f1 = open('otl_file.doc', 'w')
 		f1.close()
-	else
+	else:
 		pass
 	
 	
