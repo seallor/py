@@ -1,8 +1,9 @@
 import telebot
 import re
+import schedule
 
 
-bot = telebot.TeleBot("")
+bot = telebot.TeleBot('622604901:AAGY1a7fczTzmD-ugGsIdMPhtQp1MR6nqgg')
 
 
 #Обработчик команды '/help'  и '/start'
@@ -28,30 +29,19 @@ def handle_restart(message):
 	f1.close()
 
 
-#Обработчик команды СБЛ
-@bot.message_handler(commands=['sbl'])
-def sbl_line(message):
-	f = open('workfile.doc', 'a')
-	f.write('-------------------------------------СБЛ---------------------------------------' + '\n')
-	f.close()
-
-
-#Обработчик команды ОТЛ
-@bot.message_handler(commands=['otl'])
-def otl_line(message):
-	f = open('workfile.doc', 'a')
-	f.write('-------------------------------------ОТЛ---------------------------------------' + '\n')
-	f.close()
-
-
-#Обработчик команды СПЛ
-@bot.message_handler(commands=['spl'])
-def spl_line(message):
-	f = open('workfile.doc', 'a')
-	f.write('-------------------------------------СПЛ---------------------------------------' + '\n')
-	f.close()
+#Обработчик команды '/gimme_file'.
+@bot.message_handler(commands=['gimme_file'])
+def file_by_time(message):
+	def gimme():
+		f1 = open('workfile.doc', 'r')
+		bot.send_document(message.from_user.id, f1)
+		f1.close()
+		
+	schedule.every().day.at("18:30").do(gimme)
 	
-
+	while 1:
+		schedule.run_pending()
+	
 
 #Обработчик команды '/file'. По запросу предоставляет файл с собранными данными.
 @bot.message_handler(commands=['file'])
@@ -65,13 +55,15 @@ def give_the_file(message):
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
 	f = open('workfile.doc', 'a')
-	new_text = re.sub(r'о', 'Окна: ', message.text.lower())
+	new_text = re.sub(r'л', 'OTL: №', message.text.lower())
+	new_text = re.sub(r'б', 'SBL: №', new_text)
+	new_text = re.sub(r'п', 'SPL: №', new_text)
+	new_text = re.sub(r'о', 'Окна: ', new_text)
 	new_text = re.sub(r'т', 'Торец, ', new_text)
 	new_text = re.sub(r'ф', 'Форточки: ', new_text)
 	new_text = re.sub(r'д', 'Двери: ', new_text)
-	f.write('Вагон ' + new_text + '\n')
+	f.write(new_text + '\n')
 	f.close()
 
 
 bot.polling(none_stop=True, interval=0)
-
