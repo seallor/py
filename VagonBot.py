@@ -3,7 +3,7 @@ import re
 import schedule
 
 
-bot = telebot.TeleBot('')
+bot = telebot.TeleBot('622604901:AAGY1a7fczTzmD-ugGsIdMPhtQp1MR6nqgg')
 
 
 #Обработчик команды '/help'  и '/start'
