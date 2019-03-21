@@ -6,6 +6,11 @@ import schedule
 bot = telebot.TeleBot('622604901:AAGY1a7fczTzmD-ugGsIdMPhtQp1MR6nqgg')
 
 
+f2 = open('workfile.doc', 'a')
+f2.write('----\n')
+f2.close()
+
+
 #Обработчик команды '/help'  и '/start'
 @bot.message_handler(commands=['help', 'start'])
 def handle_help(message):
