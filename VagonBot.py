@@ -47,6 +47,11 @@ def file_by_time(message):
 		schedule.run_pending()
 	
 
+@bot.message_handler(commands=['id'])
+def give_id(message):
+	bot.send_message(message.from_user.id, message.from_user.id)
+
+	
 #Обработчик команды '/file'. По запросу предоставляет файл с собранными данными.
 @bot.message_handler(commands=['file'])
 def give_the_file(message):
