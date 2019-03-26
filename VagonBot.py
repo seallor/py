@@ -31,19 +31,6 @@ def handle_restart(message):
 	f1 = open('workfile.doc', 'w')
 	f1.write('-------------------------Отчёт по обрывам в вагонах----------------------------'+ '\n')
 	f1.close()
-
-x = 0
-def gimme():
-	f1 = open('workfile.doc', 'r')
-	bot.send_document(message.from_user.id, f1)
-	f1.close()	
-def one():
-	x += 1
-	bot.send_message('360941887', x)
-schedule.every().day.at("09:10").do(gimme)
-schedule.every().hour.do(one)
-while 1:
-	schedule.run_pending()
 	
 
 @bot.message_handler(commands=['id'])
@@ -74,4 +61,18 @@ def handle_text(message):
 	f.close()
 
 
+x = 0
+def gimme():
+	f1 = open('workfile.doc', 'r')
+	bot.send_document(message.from_user.id, f1)
+	f1.close()	
+def one():
+	x += 1
+	bot.send_message('360941887', x)
+schedule.every().day.at("09:10").do(gimme)
+schedule.every().hour.do(one)
+while 1:
+	schedule.run_pending()
+
+	
 bot.polling(none_stop=True, interval=0)
