@@ -10,18 +10,7 @@ f2 = open('workfile.doc', 'a')
 f2.write('----\n')
 f2.close()
 
-x = 0
-def gimme():
-	f1 = open('workfile.doc', 'r')
-	bot.send_document(message.from_user.id, f1)
-	f1.close()	
-def one():
-	x += 1
-	bot.send_message('360941887', x)
-schedule.every().day.at("09:10").do(gimme)
-schedule.every().hour.do(one)
-while 1:
-	schedule.run_pending()
+
 
 
 #Обработчик команды '/help'  и '/start'
