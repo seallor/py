@@ -40,7 +40,7 @@ def gimme():
 def one():
 	x += 1
 	bot.send_message('360941887', x)
-schedule.every().day.at("9:10").do(gimme)
+schedule.every().day.at("09:10").do(gimme)
 schedule.every().hour.do(one)
 while 1:
 	schedule.run_pending()
