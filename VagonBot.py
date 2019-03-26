@@ -32,25 +32,23 @@ def handle_restart(message):
 	f1.write('-------------------------Отчёт по обрывам в вагонах----------------------------'+ '\n')
 	f1.close()
 
-
-#Обработчик команды '/gimme_file'.
-@bot.message_handler(commands=['gimme_file'])
-def file_by_time(message):
-	def gimme():
-		f1 = open('workfile.doc', 'r')
-		bot.send_document(message.from_user.id, f1)
-		f1.close()
-		
-	schedule.every().day.at("18:30").do(gimme)
-	
-	while 1:
-		schedule.run_pending()
+x = 0
+def gimme():
+	f1 = open('workfile.doc', 'r')
+	bot.send_document(message.from_user.id, f1)
+	f1.close()	
+def one():
+	x += 1
+	bot.send_message('360941887', x)
+schedule.every().day.at("9:10").do(gimme)
+schedule.every().hour.do(one)
+while 1:
+	schedule.run_pending()
 	
 
 @bot.message_handler(commands=['id'])
 def give_id(message):
 	bot.send_message(message.from_user.id, message.from_user.id)
-	bot.send_message('360941887', 'gj')
 
 	
 #Обработчик команды '/file'. По запросу предоставляет файл с собранными данными.
