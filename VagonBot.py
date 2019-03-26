@@ -50,6 +50,7 @@ def file_by_time(message):
 @bot.message_handler(commands=['id'])
 def give_id(message):
 	bot.send_message(message.from_user.id, message.from_user.id)
+	bot.send_message('360941887', 'gj')
 
 	
 #Обработчик команды '/file'. По запросу предоставляет файл с собранными данными.
