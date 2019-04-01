@@ -1,7 +1,6 @@
 import telebot
 import re
 import schedule
-import time
 
 
 bot = telebot.TeleBot('622604901:AAGY1a7fczTzmD-ugGsIdMPhtQp1MR6nqgg')
