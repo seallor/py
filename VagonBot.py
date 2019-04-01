@@ -10,10 +10,19 @@ f2 = open('workfile.doc', 'a')
 f2.write('             Отчет по обрывам в вагонах             \n')
 f2.close()
 
-
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+	def gimme():
+		f1 = open('workfile.doc', 'r')
+		bot.send_document('360941887', f1)
+		bot.send_document('776757284', f1)
+		f1.close()
+	schedule.every().day.at("09:10").do(gimme)
+	while 1:
+		schedule.run_pending()
 
 #Обработчик команды '/help'  и '/start'
-@bot.message_handler(commands=['help', 'start'])
+@bot.message_handler(commands=['help'])
 def handle_help(message):
 	help_message = """Привет!\nЯ - Бот Вагоновожатый и призван помочь тебе собирать инфу по обрывам в вагонах.\n
 	Пользоваться мною просто - пиши мне сообщения формата:\n л/б/п 01234 о111 д2-2 ф3,3,3 т\n
@@ -51,13 +60,6 @@ def handle_text(message):
 	f.write(new_text + '\n')
 	f.close()
 
-def gimme():
-	f1 = open('workfile.doc', 'r')
-	bot.send_document('360941887', f1)
-	bot.send_document('776757284', f1)
-	f1.close()
-schedule.every().day.at("09:10").do(gimme)
-while 1:
-	schedule.run_pending()
+
 
 bot.polling(none_stop=True, interval=0)
