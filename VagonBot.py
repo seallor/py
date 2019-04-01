@@ -11,23 +11,13 @@ f2.write('----\n')
 f2.close()
 
 
-@bot.message_handler(commands=['gimme_file'])
-def file_by_time(message):
-	def gimme():
-		f1 = open('workfile.doc', 'r')
-		bot.send_document('360941887', f1)
-		f1.close()
-	schedule.every().day.at("09:10").do(gimme)
-	while 1:
-		schedule.run_pending()
-
 
 #Обработчик команды '/help'  и '/start'
 @bot.message_handler(commands=['help', 'start'])
 def handle_help(message):
 	help_message = """Привет!\nЯ - Бот Вагоновожатый и призван помочь тебе собирать инфу по обрывам в вагонах.\n
 	Пользоваться мною просто - пиши мне сообщения формата:\n л/б/п 01234 о111 д2-2 ф3,3,3 т\n
-	, где л/б/п - линии ОТЛ/СБЛ/СПЛ соответственно. И все будет круто!\n Пожалуйста, старайся не ошибаться, так как на данном этапе у меня нет возможности редактирования. 
+	, где к/с/з - линии СБЛ/ОТЛ/СПЛ соответственно. И все будет круто!\n Пожалуйста, старайся не ошибаться, так как на данном этапе у меня нет возможности редактирования. 
 	Тем более не стоит спамить. И никогда, НИКОГДА бл не шли мне смайлики!\n
 	Чтобы получить файл с собранными данными - пришли мне команду /file\n"""
 	bot.send_message(message.from_user.id, help_message)
@@ -61,9 +51,9 @@ def give_the_file(message):
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
 	f = open('workfile.doc', 'a')
-	new_text = re.sub(r'л', 'OTL: №', message.text.lower())
-	new_text = re.sub(r'б', 'SBL: №', new_text)
-	new_text = re.sub(r'п', 'SPL: №', new_text)
+	new_text = re.sub(r'с', 'OTL: №', message.text.lower())
+	new_text = re.sub(r'к', 'SBL: №', new_text)
+	new_text = re.sub(r'з', 'SPL: №', new_text)
 	new_text = re.sub(r'о', 'Окна: ', new_text)
 	new_text = re.sub(r'т', 'Торец, ', new_text)
 	new_text = re.sub(r'ф', 'Форточки: ', new_text)
@@ -71,6 +61,14 @@ def handle_text(message):
 	f.write(new_text + '\n')
 	f.close()
 
-
+def gimme():
+if 
+	f1 = open('workfile.doc', 'r')
+	bot.send_document('360941887', f1)
+	#bot.send_document('776757284', f1)
+	f1.close()
+schedule.every().day.at("09:10").do(gimme)
+while 1:
+	schedule.run_pending()
 
 bot.polling(none_stop=True, interval=0)
