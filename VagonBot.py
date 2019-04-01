@@ -1,13 +1,14 @@
 import telebot
 import re
 import schedule
+import time
 
 
 bot = telebot.TeleBot('622604901:AAGY1a7fczTzmD-ugGsIdMPhtQp1MR6nqgg')
 
 
 f2 = open('workfile.doc', 'a')
-f2.write('----\n')
+f2.write('             Отчет по обрывам в вагонах             \n')
 f2.close()
 
 
@@ -22,16 +23,6 @@ def handle_help(message):
 	Чтобы получить файл с собранными данными - пришли мне команду /file\n"""
 	bot.send_message(message.from_user.id, help_message)
 
-
-#Обработчик команды '/restart'.
-@bot.message_handler(commands=['restart'])
-def handle_restart(message):
-	f1 = open('workfile.doc', 'r')
-	bot.send_document(message.from_user.id, f1)
-	f1.close()
-	f1 = open('workfile.doc', 'w')
-	f1.write('-------------------------Отчёт по обрывам в вагонах----------------------------'+ '\n')
-	f1.close()
 	
 
 @bot.message_handler(commands=['id'])
@@ -62,10 +53,9 @@ def handle_text(message):
 	f.close()
 
 def gimme():
-if 
 	f1 = open('workfile.doc', 'r')
 	bot.send_document('360941887', f1)
-	#bot.send_document('776757284', f1)
+	bot.send_document('776757284', f1)
 	f1.close()
 schedule.every().day.at("09:10").do(gimme)
 while 1:
