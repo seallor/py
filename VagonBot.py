@@ -1,6 +1,5 @@
 import telebot
 import re
-from time import gmtime, strftime
 import schedule
 
 
@@ -15,7 +14,7 @@ f2.close()
 def handle_start(message):
 	def gimme():
 		f1 = open('workfile.doc', 'r')
-		f1.write(strftime("%Y-%m-%d", gmtime()), '\n')  
+		f1.write('-\n')  
 		f1.close()
 		f1 = open('workfile.doc', 'r')
 		bot.send_document('360941887', f1)
@@ -29,7 +28,7 @@ def handle_start(message):
 @bot.message_handler(commands=['help'])
 def handle_help(message):
 	help_message = """Привет!\nЯ - Бот Вагоновожатый и призван помочь тебе собирать инфу по обрывам в вагонах.\n
-	Пользоваться мною просто - пиши мне сообщения формата:\n л/б/п 01234 о111 д2-2 ф3,3,3 т\n
+	Пользоваться мною просто - пиши мне сообщения формата:\n л/б/п 01234 о1,1,1 д2,2 ф3,3,3 т\n
 	, где к/с/з - линии СБЛ/ОТЛ/СПЛ соответственно. И все будет круто!\n Пожалуйста, старайся не ошибаться, так как на данном этапе у меня нет возможности редактирования. 
 	Тем более не стоит спамить. И никогда, НИКОГДА бл не шли мне смайлики!\n
 	Чтобы получить файл с собранными данными - пришли мне команду /file\n"""
