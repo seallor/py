@@ -1,5 +1,6 @@
 import telebot
 import re
+from time import gmtime, strftime
 import schedule
 
 
@@ -13,6 +14,9 @@ f2.close()
 @bot.message_handler(commands=['start'])
 def handle_start(message):
 	def gimme():
+		f1 = open('workfile.doc', 'r')
+		f1.write(strftime("%Y-%m-%d", gmtime()), '\n')  
+		f1.close()
 		f1 = open('workfile.doc', 'r')
 		bot.send_document('360941887', f1)
 		bot.send_document('776757284', f1)
