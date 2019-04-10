@@ -14,9 +14,6 @@ f2.close()
 def handle_start(message):
 	def gimme():
 		f1 = open('workfile.doc', 'r')
-		f1.write('-\n')  
-		f1.close()
-		f1 = open('workfile.doc', 'r')
 		bot.send_document('360941887', f1)
 		bot.send_document('776757284', f1)
 		f1.close()
@@ -62,7 +59,12 @@ def handle_text(message):
 	new_text = re.sub(r'д', 'Двери: ', new_text)
 	f.write(new_text + '\n')
 	f.close()
+	x = 1
+	if x:
+		handle_start(message)
+		x = 0
+	else:
+		pass
 
-
-
+	
 bot.polling(none_stop=True, interval=0)
