@@ -10,7 +10,7 @@ f2 = open('workfile.doc', 'a')
 f2.write('             Отчет по обрывам в вагонах             \n')
 f2.close()
 
-f3 = 'op'
+global f3 = 'op'
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
