@@ -10,9 +10,6 @@ f2 = open('workfile.doc', 'a')
 f2.write('             Отчет по обрывам в вагонах             \n')
 f2.close()
 
-global f3 
-f3 = 'op'
-
 @bot.message_handler(commands=['start'])
 def handle_start(message):
 	def gimme():
@@ -62,12 +59,7 @@ def handle_text(message):
 	new_text = re.sub(r'д', 'Двери: ', new_text)
 	f.write(new_text + '\n')
 	f.close()
-	if f3:
-		handle_start(message)
-		f3 = 0
-		bot.send_message('146029723', 'k')
-	else:
-		bot.send_message('146029723', 'ok')
+
 
 	
 bot.polling(none_stop=True, interval=0)
